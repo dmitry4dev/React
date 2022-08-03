@@ -18,10 +18,14 @@ const FunctionComponent = (props) => {
   return(
     <div>
 {/* Аналог IF из JS*/}
-      {count ? (<>Опа опа {props.firstName} {props.lastName}</>) : ''}
-      
-      Это функциональный компонент {props.firstName} {props.lastName}
-      <button onClick={() => setCount(count + 1)}>Add {count}</button>
+      <div>
+        {count ? (<>Опа опа {props.firstName} {props.lastName}</>) : ''}
+        <button onClick={() => setCount(count + 1)}>Add {count}</button>
+      </div>
+      <div>
+        Это функциональный компонент {props.firstName} {props.lastName}
+        <button onClick={() => setCount(count + 1)}>Add {count}</button>
+      </div>
     </div>
   );
 }
