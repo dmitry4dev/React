@@ -17,7 +17,7 @@ function CityListComponent(props) {
     <Container>
       <InputGroup className="mb-3">
         <InputGroup.Text>Select City</InputGroup.Text>
-        <Form.Control aria-label="City Input" />
+        <Form.Control onChange={(e) => props.getInputValue(e.target.value)} aria-label="City Input" />
         <Form.Select onChange={(e) => props.setSelectedCity(e.target.value)} aria-label="Countries">
           <option>Choose City</option>
           {cities.map(city => (<option key={city} value={city}>{city}</option>))}
