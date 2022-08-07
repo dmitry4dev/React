@@ -14,7 +14,6 @@ function ChartsComponent() {
       id="uncontrolled-tab-example"
       className="mb-3"
       fill
-// в обработчик onSelect передаем eventKey таба и выводим в переменную selectedTab его значение
       onSelect={(eventKey) => setSelectedTab(eventKey)}
     >
       <Tab eventKey="reported-cases" title="Reported Cases">
