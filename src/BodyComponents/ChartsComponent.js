@@ -3,6 +3,7 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import ReportedCasesComponent from './RepCasesTabComponent';
 
 function ChartsComponent() {
 
@@ -17,11 +18,8 @@ function ChartsComponent() {
       onSelect={(eventKey) => setSelectedTab(eventKey)}
     >
       <Tab eventKey="reported-cases" title="Reported Cases">
-        <div>{selectedTab}</div>
-        <Row>
-          <Col sm={4}>Mini Col</Col>
-          <Col sm={8}>Large Col</Col>
-        </Row>
+        <div class="mb-3">{selectedTab}</div>
+        <ReportedCasesComponent />
       </Tab>
       <Tab eventKey="ranked-charts" title="Ranked Charts">
         <div>{selectedTab}</div>

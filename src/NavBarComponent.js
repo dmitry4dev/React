@@ -11,7 +11,7 @@ function NavBarComponent() {
             src="./logo.svg"
             width="50"
             height="50"
-            className="d-inline-block"
+            class="d-inline-block"
             alt="React Bootstrap logo"
           />
           Covid-spa Information
