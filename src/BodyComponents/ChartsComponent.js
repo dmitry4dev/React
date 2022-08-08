@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import ReportedCasesComponent from './RepCasesTabComponent';
+import ReportedCasesComponent from './ReportedCasesTabComponent';
+import RankedChartsComponent from './RankedChartsComponent';
+import { propTypes } from 'react-bootstrap/esm/Image';
 
 function ChartsComponent() {
 
@@ -18,15 +18,10 @@ function ChartsComponent() {
       onSelect={(eventKey) => setSelectedTab(eventKey)}
     >
       <Tab eventKey="reported-cases" title="Reported Cases">
-        <div class="mb-3">{selectedTab}</div>
-        <ReportedCasesComponent />
+        <ReportedCasesComponent title={selectedTab} />
       </Tab>
       <Tab eventKey="ranked-charts" title="Ranked Charts">
-        <div>{selectedTab}</div>
-        <Row>
-          <Col sm={4}>Mini Col</Col>
-          <Col sm={8}>Large Col</Col>
-        </Row>
+        <RankedChartsComponent title={selectedTab} />
       </Tab>
     </Tabs>
   );
