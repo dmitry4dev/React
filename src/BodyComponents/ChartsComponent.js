@@ -3,11 +3,11 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import ReportedCasesComponent from './ReportedCasesTabComponent';
 import RankedChartsComponent from './RankedChartsComponent';
-import { propTypes } from 'react-bootstrap/esm/Image';
 
-function ChartsComponent() {
+function ChartsComponent(props) {
 
   const [selectedTab, setSelectedTab] = useState('');
+  console.log('CHARTSCOMPONENT', props.countryData)
 
   return (
     <Tabs
