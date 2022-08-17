@@ -9,7 +9,6 @@ function RankedChartsComponent() {
   const formRadio = useRef(null);
 
   function handleOnInput() {
-
     const [totalNumberOfDeaths, totalNumberOfCases, countriesCount] = formRadio.current;
     const selectedCountriesCount = [...countriesCount].find(option => option.selected === true);
 
