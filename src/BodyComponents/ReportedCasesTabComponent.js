@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/row';
 import Col from 'react-bootstrap/col';
@@ -6,12 +6,36 @@ import { AreaChart } from 'reaviz';
 
 function ReportedCasesComponent(props) {
 
-// Хук useRef возвращает нам дом элементы, у которых есть свойство .current
-// это аналог свойства .target
-  const formRadio = useRef(null);
+  const [chartData, setChartData] = useState(null);
+
+  console.log('CHARTSCOMPONENT', props.countryData);
+
+  const yearData = props.countryData?.data.filter(data => new Date(data.date).getFullYear() === 2022);
+
 
   function handleOnInput() {
     const [deathCount, confirmedCases, dailyNewValues, cumulativeMode] = formRadio.current;
+    let dataObject;
+
+    if (deathCount.checked && dailyNewValues.checked) {
+      dataObject = 'new_deaths';
+    }
+    if (deathCount.checked && cumulativeMode.checked) {
+      dataObject = 'total_deaths';
+    }
+    if (confirmedCases.checked && dailyNewValues.checked) {
+      dataObject = 'new_cases';
+    }
+    if (confirmedCases.checked && dailyNewValues.checked) {
+      dataObject = 'total_cases';
+    }
+
+    setChartData(yearData.map(data => {
+      return {
+          key: new Date(data.date),
+          data: data[dataObject] || 0
+        }
+    }));
 
     console.log('deathCount', deathCount.checked)
     console.log('ConfirmedCases', confirmedCases.checked)
@@ -19,8 +43,6 @@ function ReportedCasesComponent(props) {
     console.log('CumulativeMode', cumulativeMode.checked)
   }
 
-// Если обязательно нужен реактовский тег, но по смыслу никакой не подходит
-// то можно всё обернуть в пустой тег как здесь <></>
   return (
     <>
     <div>{props.title}</div>
@@ -55,13 +77,7 @@ function ReportedCasesComponent(props) {
           </Form>
         </Col>
         <Col sm={8}>
-          <AreaChart
-            data={[
-              { key: new Date('11/29/2019'), data: 8 },
-              { key: new Date('11/30/2019'), data: 13 },
-              { key: new Date('12/1/2019'), data: 6 },
-            ]}
-          />
+          {chartData ? <AreaChart data={chartData} /> : ''}
         </Col>
       </Row>
     </>

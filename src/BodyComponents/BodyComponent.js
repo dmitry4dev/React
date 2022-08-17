@@ -6,6 +6,7 @@ import ChartsComponent from './ChartsComponent';
 import { readCovidData } from '../dataService/fileService';
 
 function BodyComponent() {
+
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [covidData, setCovidData] = useState(null);
   const [countryList, setCountryList] = useState([]);
@@ -19,8 +20,8 @@ function BodyComponent() {
     try {
       const data = await readCovidData();
       return data;
-    } catch(e) {
-      console.error(e);
+    } catch(error) {
+      console.error(error);
     }
   }
 

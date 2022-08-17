@@ -7,7 +7,6 @@ import RankedChartsComponent from './RankedChartsComponent';
 function ChartsComponent(props) {
 
   const [selectedTab, setSelectedTab] = useState('');
-  console.log('CHARTSCOMPONENT', props.countryData)
 
   return (
     <Tabs
@@ -18,7 +17,7 @@ function ChartsComponent(props) {
       onSelect={(eventKey) => setSelectedTab(eventKey)}
     >
       <Tab eventKey="reported-cases" title="Reported Cases">
-        <ReportedCasesComponent title={selectedTab} />
+        <ReportedCasesComponent title={selectedTab} {...props}/>
       </Tab>
       <Tab eventKey="ranked-charts" title="Ranked Charts">
         <RankedChartsComponent title={selectedTab} />
