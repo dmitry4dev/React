@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-import ReportedCasesComponent from './ReportedCasesTabComponent';
+import ReportedCasesComponent from './ReportedCasesComponent';
 import RankedChartsComponent from './RankedChartsComponent';
 
 function ChartsComponent(props) {
@@ -20,7 +20,7 @@ function ChartsComponent(props) {
         <ReportedCasesComponent title={selectedTab} {...props}/>
       </Tab>
       <Tab eventKey="ranked-charts" title="Ranked Charts">
-        <RankedChartsComponent title={selectedTab} />
+        <RankedChartsComponent title={selectedTab} {...props}/>
       </Tab>
     </Tabs>
   );
