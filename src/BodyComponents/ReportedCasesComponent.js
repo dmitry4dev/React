@@ -3,22 +3,26 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/row';
 import Col from 'react-bootstrap/col';
 import { AreaChart } from 'reaviz';
+import CountryListComponent from './CountryListComponent';
 
 function ReportedCasesComponent(props) {
 
   const formRadio = useRef(null);
   const [chartData, setChartData] = useState(null);
+  const [countryData, setCountryData] = useState(null);
 
-  console.log('CHARTSCOMPONENT', props.countryData);
+  // const yearData = countryData?.data.filter(data => new Date(data.date).getFullYear() === 2022);
 
-  const yearData = props.countryData?.data.filter(data => new Date(data.date).getFullYear() === 2022);
-
-  const initialData = yearData?.map(data => {
+  const initialData = countryData?.data.map(data => {
     return {
         key: new Date(data.date),
         data: data.new_deaths || 0
       }
   });
+
+  function handleCountrySelect(countryKey) {
+    setCountryData(props.covidData[countryKey]);
+  }
 
   function handleOnInput() {
     const [deathCount, confirmedCases, dailyNewValues, cumulativeMode] = formRadio.current;
@@ -37,7 +41,7 @@ function ReportedCasesComponent(props) {
       dataObject = 'total_cases';
     }
 
-    setChartData(yearData.map(data => {
+    setChartData(countryData.data.map(data => {
       return {
           key: new Date(data.date),
           data: data[dataObject] || 0
@@ -47,8 +51,8 @@ function ReportedCasesComponent(props) {
 
   return (
     <>
-    <div>{props.title}</div>
-      <Row className="pt-3 pb-3">
+      <CountryListComponent countryList={props.countryList} handleCountrySelect={handleCountrySelect} />
+      <Row className="pt-5 pb-3">
         <Col sm={4}>
           <Form ref={formRadio} onInput={handleOnInput}>
             <Form.Check
@@ -79,7 +83,7 @@ function ReportedCasesComponent(props) {
           </Form>
         </Col>
         <Col sm={8}>
-          {(chartData || initialData) ? <AreaChart data={chartData || initialData} /> : ''}
+          {(chartData || initialData) ? <AreaChart height={300} data={chartData || initialData} /> : ''}
         </Col>
       </Row>
     </>

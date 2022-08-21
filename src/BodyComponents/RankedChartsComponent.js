@@ -9,16 +9,12 @@ function RankedChartsComponent(props) {
   const formRadio = useRef(null);
   const [chartData, setChartData] = useState(null);
 
-  console.log('COVID_DATA', props.covidData)
-
   const initialData = Object.values(props.covidData).slice(0, 9).map(data => {
     return {
         key: data.location,
         data: data.data.reverse()[0].total_deaths || 0
       }
   });
-
-  console.log('COUNT', props.countryCount);
 
   function handleOnInput() {
     const [totalNumberOfDeaths, totalNumberOfCases, countriesCount] = formRadio.current;
@@ -47,12 +43,10 @@ function RankedChartsComponent(props) {
     countryListCount.push((<option key={i} value={i}>{i}</option>));
   }
 
-  console.log('COUNTRYLIST', countryListCount)
-
   return(
     <>
-      <Row className="pt-3 pb-3">
-        <Col sm={4}>
+      <Row className="pt-5 pb-3">
+        <Col sm={4} className="mr-2">
           <Form ref={formRadio} onInput={handleOnInput}>
             <Form.Check
               className="mb-1"
@@ -72,7 +66,7 @@ function RankedChartsComponent(props) {
           </Form>
         </Col>
         <Col sm={8}>
-        {(chartData || initialData) ? <BarChart data={chartData || initialData} /> : ''}
+        {(chartData || initialData) ? <BarChart height={300} data={chartData || initialData} /> : ''}
         </Col>
       </Row>
     </>

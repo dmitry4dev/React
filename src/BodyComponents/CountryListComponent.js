@@ -8,8 +8,8 @@ function CountryListComponent(props) {
   const [inputValue, setInputValue] = useState('');
 
   return(
-    <Container className="p-0">
-      <InputGroup className="mb-3 p-0">
+    <Container className="pt-3 pb-1">
+      <InputGroup className="mb-5 p-0">
         <InputGroup.Text>Select Country</InputGroup.Text>
         <Form.Control onChange={(e) => setInputValue(e.target.value)} aria-label="City Input" />
         <Form.Select onChange={(e) => props.handleCountrySelect(e.target.value)} aria-label="Countries">

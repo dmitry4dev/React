@@ -1,5 +1,5 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import './styles/App.scss';
 import Container from 'react-bootstrap/Container';
 import  NavbarComponent from './NavBarComponent';
 import BodyComponent from './BodyComponents/BodyComponent';
