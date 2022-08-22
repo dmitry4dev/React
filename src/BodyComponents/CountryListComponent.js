@@ -11,12 +11,19 @@ function CountryListComponent(props) {
     <Container className="pt-3 pb-1">
       <InputGroup className="mb-5 p-0">
         <InputGroup.Text>Select Country</InputGroup.Text>
-        <Form.Control onChange={(e) => setInputValue(e.target.value)} aria-label="City Input" />
-        <Form.Select onChange={(e) => props.handleCountrySelect(e.target.value)} aria-label="Countries">
+        <Form.Control
+          onChange={(e) => setInputValue(e.target.value)}
+          aria-label="City Input"
+        />
+        <Form.Select
+          onChange={(e) => props.handleCountrySelect(e.target.id)}
+          aria-label="Countries"
+          defaultValue={props.country}
+          >
           <option>Choose Country</option>
           {props.countryList.filter(country => country.name.toLowerCase()
           .includes(inputValue.toLowerCase()))
-          .map(country => (<option key={country.key} value={country.key}>{country.name}</option>))}
+          .map(country => (<option key={country.key} id={country.key} value={country.name}>{country.name}</option>))}
         </Form.Select>
       </InputGroup>
     </Container>

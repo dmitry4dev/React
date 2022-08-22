@@ -1,8 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/esm/Container';
-import CountryListComponent from './CountryListComponent';
-import ChartsComponent from './ChartsComponent';
+import RouteComponent from './RouteComponent';
 import { readCovidData } from '../dataService/fileService';
 import { getTodayCovidData } from '../dataService/apiService';
 
@@ -39,7 +38,7 @@ function BodyComponent() {
 
   return(
     <Container className="mt-2">
-      <ChartsComponent
+      <RouteComponent
         countryData={countryData}
         covidData={covidData}
         countryCount={Object.keys(covidData).length}

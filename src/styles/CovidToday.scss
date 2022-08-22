@@ -5,6 +5,10 @@ $successColor: #40b340;
 $dangerColor: #d10000;
 $textSize: 40px;
 
+.nav-link:nth-child(1) {
+  margin: 0 40px;
+}
+
 .wrapper {
   width: $carouselWidth;
   height: $carouselHeight;
@@ -44,4 +48,11 @@ $textSize: 40px;
 
 .carousel-indicators {
   display: none;
+}
+
+
+@media(max-width: 992px) {
+  .nav-link:nth-child(1) {
+    margin: 0;
+  }
 }

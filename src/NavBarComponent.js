@@ -1,6 +1,8 @@
 import { React, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
 
 function NavBarComponent() {
@@ -14,6 +16,7 @@ function NavBarComponent() {
       document.body.style.color = 'white';
       document.getElementsByClassName('navbar-brand')[0].style.color = 'white';
       document.getElementsByClassName('form-check-label')[0].style.color = 'white';
+      document.querySelectorAll('.nav-link').forEach(elem => elem.style.color = 'white');
       document.querySelectorAll('.caption__title').forEach(elem => elem.style.color = 'white');
       document.getElementsByClassName('carousel-control-prev-icon')[0].style.backgroundColor = 'black';
       document.getElementsByClassName('carousel-control-next-icon')[0].style.backgroundColor = 'black';
@@ -23,6 +26,7 @@ function NavBarComponent() {
       document.body.style.color = 'black';
       document.getElementsByClassName('navbar-brand')[0].style.color = 'black';
       document.getElementsByClassName('form-check-label')[0].style.color = 'black';
+      document.querySelectorAll('.nav-link').forEach(elem => elem.style.color = 'black');
       document.querySelectorAll('.caption__title').forEach(elem => elem.style.color = 'black');
       document.getElementsByClassName('carousel-control-prev-icon')[0].style.backgroundColor = '#6c9dd4';
       document.getElementsByClassName('carousel-control-next-icon')[0].style.backgroundColor = '#6c9dd4';
@@ -32,22 +36,29 @@ function NavBarComponent() {
   return (
     <Navbar bg={theme} expand="lg" className="mb-5">
       <Container>
-        <Navbar.Brand href="#home">
-          <img
-            src="./logo.svg"
+        <Link className="navbar-brand" to="/">
+        <img
+            src="/logo.svg"
             width="50"
             height="50"
             className="d-inline-block"
             alt="React Bootstrap logo"
           />
           Covid-spa Information
-        </Navbar.Brand>
-        <Form.Check
+        </Link>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Link to="reported-cases/Russia" className="nav-link">Reported Cases</Link>
+            <Link to="ranked-charts" className="nav-link">Ranked Charts</Link>
+          </Nav>
+          <Form.Check
           type="switch"
           id="custom-switch"
           label={theme === 'light' ? 'Dark mode' : 'Light mode'}
           onClick={() => handleClick()}
         />
+        </Navbar.Collapse>
       </Container>
     </Navbar>
   );

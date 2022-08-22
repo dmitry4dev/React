@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/row';
 import Col from 'react-bootstrap/col';
@@ -10,10 +11,13 @@ function ReportedCasesComponent(props) {
   const formRadio = useRef(null);
   const [chartData, setChartData] = useState(null);
   const [countryData, setCountryData] = useState(null);
+  const { country } = useParams();
 
-  // const yearData = countryData?.data.filter(data => new Date(data.date).getFullYear() === 2022);
+  const initialCountry = countryData || props.covidData[Object.keys(props.covidData).filter(key => props.covidData[key].location === country)];
 
-  const initialData = countryData?.data.map(data => {
+  console.log('INITIAL_COUNTRY', initialCountry)
+
+  const initialData = initialCountry?.data?.map(data => {
     return {
         key: new Date(data.date),
         data: data.new_deaths || 0
@@ -51,7 +55,13 @@ function ReportedCasesComponent(props) {
 
   return (
     <>
-      <CountryListComponent countryList={props.countryList} handleCountrySelect={handleCountrySelect} />
+      {props.countryList.length ?
+        <CountryListComponent
+          countryList={props.countryList}
+          handleCountrySelect={handleCountrySelect}
+          country={country} /> : ''
+      }
+
       <Row className="pt-5 pb-3">
         <Col sm={4}>
           <Form ref={formRadio} onInput={handleOnInput}>
