@@ -37,7 +37,7 @@ function NavBarComponent() {
     <Navbar bg={theme} expand="lg" className="mb-5">
       <Container>
         <Link className="navbar-brand" to="/">
-        <img
+          <img
             src="/logo.svg"
             width="50"
             height="50"
@@ -49,15 +49,15 @@ function NavBarComponent() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Link to="reported-cases/Russia" className="nav-link">Reported Cases</Link>
+            <Link to="reported-cases/EST" className="nav-link">Reported Cases</Link>
             <Link to="ranked-charts" className="nav-link">Ranked Charts</Link>
           </Nav>
           <Form.Check
-          type="switch"
-          id="custom-switch"
-          label={theme === 'light' ? 'Dark mode' : 'Light mode'}
-          onClick={() => handleClick()}
-        />
+            type="switch"
+            id="custom-switch"
+            label={theme === 'light' ? 'Dark mode' : 'Light mode'}
+            onClick={() => handleClick()}
+          />
         </Navbar.Collapse>
       </Container>
     </Navbar>

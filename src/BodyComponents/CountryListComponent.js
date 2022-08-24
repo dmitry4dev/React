@@ -16,14 +16,14 @@ function CountryListComponent(props) {
           aria-label="City Input"
         />
         <Form.Select
-          onChange={(e) => props.handleCountrySelect(e.target.id)}
+          onChange={(e) => props.handleCountrySelect(e.target.value)}
           aria-label="Countries"
           defaultValue={props.country}
           >
           <option>Choose Country</option>
           {props.countryList.filter(country => country.name.toLowerCase()
           .includes(inputValue.toLowerCase()))
-          .map(country => (<option key={country.key} id={country.key} value={country.name}>{country.name}</option>))}
+          .map(country => (<option key={country.key} label={country.name} value={country.key}></option>))}
         </Form.Select>
       </InputGroup>
     </Container>

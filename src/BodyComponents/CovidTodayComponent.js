@@ -3,6 +3,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import '../styles/CovidToday.scss';
 
 function CovidTodayComponent(props) {
+
   return (
     <Carousel className="wrapper">
       <Carousel.Item>

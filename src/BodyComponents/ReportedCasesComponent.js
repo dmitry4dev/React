@@ -13,9 +13,7 @@ function ReportedCasesComponent(props) {
   const [countryData, setCountryData] = useState(null);
   const { country } = useParams();
 
-  const initialCountry = countryData || props.covidData[Object.keys(props.covidData).filter(key => props.covidData[key].location === country)];
-
-  console.log('INITIAL_COUNTRY', initialCountry)
+  const initialCountry = countryData || props.covidData[Object.keys(props.covidData).filter(key => key === country)];
 
   const initialData = initialCountry?.data?.map(data => {
     return {
