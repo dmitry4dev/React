@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -8,15 +9,21 @@ function RankedChartsComponent(props) {
 
   const formRadio = useRef(null);
   const [chartData, setChartData] = useState(null);
+  const {cases, count} = useParams();
 
-  const initialData = Object.values(props.covidData).slice(0, 20).map(data => {
+  const initialData = Object.values(props.covidData).slice(0, count || 9).map(data => {
+
+    let objectData = 'total_deaths';
+
+    if (cases) {
+      objectData = 'total_cases';
+    }
+
     return {
         key: data.location,
-        data: data.data.reverse()[0].total_cases || 0
+        data: data.data.reverse()[0][objectData] || 0
       }
   });
-
-  console.log('RANKED_INITIAL_DATA', initialData)
 
   function handleOnInput() {
     const [totalNumberOfDeaths, totalNumberOfCases, countriesCount] = formRadio.current;
@@ -55,16 +62,17 @@ function RankedChartsComponent(props) {
               type={'radio'}
               label={`Total number of deaths`}
               name='group1'
+              defaultChecked={!cases}
             />
             <Form.Check
               className="mb-3"
               type={'radio'}
               label={`Total number of cases`}
               name='group1'
-              defaultChecked={true}
+              defaultChecked={cases}
             />
             <label className="mb-1">Select countries count</label>
-            {countryListCount.length ? <Form.Select defaultValue="20">{countryListCount}</Form.Select> : ''}
+            {countryListCount.length ? <Form.Select defaultValue={count}>{countryListCount}</Form.Select> : ''}
           </Form>
         </Col>
         <Col sm={8}>

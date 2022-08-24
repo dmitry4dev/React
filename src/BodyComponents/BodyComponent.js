@@ -1,9 +1,11 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import Container from 'react-bootstrap/esm/Container';
 import RouteComponent from './RouteComponent';
 import { readCovidData } from '../dataService/fileService';
 import { getCovidTodayData } from '../dataService/apiService';
+import { setCountryId } from '../ReduxState';
 
 function BodyComponent() {
 
@@ -12,6 +14,7 @@ function BodyComponent() {
   const [countryList, setCountryList] = useState([]);
   const [countryData, setCountryData] = useState(null);
   const [covidTodayData, setCovidTodayData] = useState(null);
+  const dispatch = useDispatch();
 
   async function getData() {
     try {
@@ -30,6 +33,10 @@ function BodyComponent() {
 
       for (const key in data) {
         list.push({key, name: data[key].location});
+
+        if (data[key].location === 'Estonia') {
+          dispatch(setCountryId(key));
+        }
       }
       setCountryList(list);
     });
@@ -44,7 +51,7 @@ function BodyComponent() {
         countryCount={Object.keys(covidData).length}
         covidTodayData={covidTodayData}
         countryList={countryList}
-        />
+      />
     </Container>
   );
 }

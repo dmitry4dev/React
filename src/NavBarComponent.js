@@ -1,4 +1,5 @@
 import { React, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
@@ -8,6 +9,7 @@ import Form from 'react-bootstrap/Form';
 function NavBarComponent() {
 
   const [theme, setTheme] = useState('light');
+  const countryId = useSelector(state => state.countryId);
 
   function handleClick() {
     if (theme === 'light') {
@@ -49,8 +51,8 @@ function NavBarComponent() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Link to="reported-cases/EST" className="nav-link">Reported Cases</Link>
-            <Link to="ranked-charts" className="nav-link">Ranked Charts</Link>
+            <Link to={'/reported-cases/' + countryId} className="nav-link">Reported Cases</Link>
+            <Link to="ranked-charts/cases/20" className="nav-link">Ranked Charts</Link>
           </Nav>
           <Form.Check
             type="switch"

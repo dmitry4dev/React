@@ -13,7 +13,9 @@ function ReportedCasesComponent(props) {
   const [countryData, setCountryData] = useState(null);
   const { country } = useParams();
 
-  const initialCountry = countryData || props.covidData[Object.keys(props.covidData).filter(key => key === country)];
+  const initialCountry = countryData || props.covidData[country];
+
+  console.log('INITIAL-DATA', initialCountry)
 
   const initialData = initialCountry?.data?.map(data => {
     return {
@@ -43,7 +45,7 @@ function ReportedCasesComponent(props) {
       dataObject = 'total_cases';
     }
 
-    setChartData(countryData.data.map(data => {
+    setChartData(countryData?.data?.map(data => {
       return {
           key: new Date(data.date),
           data: data[dataObject] || 0
