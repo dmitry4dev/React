@@ -10,6 +10,10 @@ function NavBarComponent() {
 
   const [theme, setTheme] = useState('light');
   const countryId = useSelector(state => state.countryId);
+  const checkedRadio = useSelector(state => state.checkedRadio);
+
+  console.log('NAVBAR-Render');
+  console.log('CHECKEDRADIO', checkedRadio);
 
   function handleClick() {
     if (theme === 'light') {
@@ -51,8 +55,8 @@ function NavBarComponent() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Link to={'/reported-cases/' + countryId} className="nav-link">Reported Cases</Link>
-            <Link to="ranked-charts/cases/20" className="nav-link">Ranked Charts</Link>
+            <Link to={"reported-cases/" + countryId} className="nav-link">Reported Cases</Link>
+            <Link to={checkedRadio ? "ranked-charts/" + checkedRadio + "/20" : "ranked-charts/total_deaths/20"} className="nav-link">Ranked Charts</Link>
           </Nav>
           <Form.Check
             type="switch"

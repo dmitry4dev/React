@@ -1,11 +1,11 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { setCountryId } from '../ReduxState';
 import Container from 'react-bootstrap/esm/Container';
 import RouteComponent from './RouteComponent';
 import { readCovidData } from '../dataService/fileService';
 import { getCovidTodayData } from '../dataService/apiService';
-import { setCountryId } from '../ReduxState';
 
 function BodyComponent() {
 

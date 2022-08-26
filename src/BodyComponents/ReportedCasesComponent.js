@@ -1,5 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setCheckedRadio } from '../ReduxState';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/row';
 import Col from 'react-bootstrap/col';
@@ -12,10 +14,9 @@ function ReportedCasesComponent(props) {
   const [chartData, setChartData] = useState(null);
   const [countryData, setCountryData] = useState(null);
   const { country } = useParams();
+  const dispatch = useDispatch();
 
   const initialCountry = countryData || props.covidData[country];
-
-  console.log('INITIAL-DATA', initialCountry)
 
   const initialData = initialCountry?.data?.map(data => {
     return {
@@ -30,18 +31,21 @@ function ReportedCasesComponent(props) {
 
   function handleOnInput() {
     const [deathCount, confirmedCases, dailyNewValues, cumulativeMode] = formRadio.current;
+
     let dataObject;
 
     if (deathCount.checked && dailyNewValues.checked) {
       dataObject = 'new_deaths';
+      dispatch(setCheckedRadio('total_deaths'));
     }
     if (deathCount.checked && cumulativeMode.checked) {
       dataObject = 'total_deaths';
     }
     if (confirmedCases.checked && dailyNewValues.checked) {
       dataObject = 'new_cases';
+      dispatch(setCheckedRadio('total_cases'));
     }
-    if (confirmedCases.checked && dailyNewValues.checked) {
+    if (confirmedCases.checked && cumulativeMode.checked) {
       dataObject = 'total_cases';
     }
 
@@ -52,6 +56,8 @@ function ReportedCasesComponent(props) {
         }
     }));
   }
+
+  console.log('REPORDETCASES-RENDER');
 
   return (
     <>
