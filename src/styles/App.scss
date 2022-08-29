@@ -1,1 +1,80 @@
 @import '~bootstrap/scss/bootstrap';
+
+$blackcolor: #000;
+$whitecolor: #fff;
+
+
+/* DARK MODE - LIGHT MODE */
+
+.light {
+  .navbar-brand,
+  .form-check-label,
+  .nav-link,
+  .caption__title,
+  .form-label {
+    color: $blackcolor;
+  }
+
+  .navbar {
+    border: none;
+  }
+
+  .navbar-toggler {
+    border: 1 px solid rgba(0,0,0,0.55);
+  }
+
+  .navbar-toggler-icon {
+    background-color: transparent;
+  }
+
+  .input-group-text {
+    color: $blackcolor;
+    background-color: #e9ecef;
+  }
+
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    background-color: #6c9dd4;
+  }
+}
+
+.dark {
+  .navbar-brand,
+  .form-check-label,
+  .nav-link,
+  .caption__title,
+  .form-label {
+    color: $whitecolor;
+  }
+
+  .navbar {
+    background-color: $blackcolor;
+    border: 1px solid $whitecolor;
+    border-radius: 5px;
+  }
+
+  .navbar-toggler {
+    border: 1px solid $whitecolor;
+  }
+
+  .navbar-toggler-icon {
+    background-color: $whitecolor;
+    border-radius: 4px;
+  }
+
+  .input-group-text {
+    color: $whitecolor;
+    background-color: $blackcolor;
+  }
+
+  .form-control,
+  .form-select {
+    color: $whitecolor;
+    background-color: $blackcolor;
+  }
+
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    background-color: $blackcolor;
+  }
+}

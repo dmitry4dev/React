@@ -1,32 +1,19 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import { React, useState, useEffect } from 'react';
+import Container from 'react-bootstrap/esm/Container';
 import { useDispatch } from 'react-redux';
 import { setCountryId } from '../ReduxState';
-import Container from 'react-bootstrap/esm/Container';
-import RouteComponent from './RouteComponent';
 import { readCovidData } from '../dataService/fileService';
-import { getCovidTodayData } from '../dataService/apiService';
+import RouteComponent from './RouteComponent';
 
-function BodyComponent() {
+function BodyComponent(props) {
 
-  const [selectedCountry, setSelectedCountry] = useState(null);
   const [covidData, setCovidData] = useState({});
   const [countryList, setCountryList] = useState([]);
-  const [countryData, setCountryData] = useState(null);
-  const [covidTodayData, setCovidTodayData] = useState(null);
+  const [countryData] = useState(null);
   const dispatch = useDispatch();
 
-  async function getData() {
-    try {
-      const data = await readCovidData();
-      return data;
-    } catch(error) {
-      console.error(error);
-    }
-  }
-
   useEffect(() => {
-    getData().then((data) => {
+    readCovidData().then((data) => {
       setCovidData(data);
 
       const list = [];
@@ -34,26 +21,28 @@ function BodyComponent() {
       for (const key in data) {
         list.push({key, name: data[key].location});
 
-        if (data[key].location === 'Estonia') {
+        if (data[key].location === props.initialCountry) {
           dispatch(setCountryId(key));
         }
       }
       setCountryList(list);
     });
-    getCovidTodayData().then(data => setCovidTodayData(data));
-  }, [null]);
+  }, []);
 
   return(
-    <Container className="mt-2">
+    <Container>
       <RouteComponent
         countryData={countryData}
         covidData={covidData}
         countryCount={Object.keys(covidData).length}
-        covidTodayData={covidTodayData}
         countryList={countryList}
       />
     </Container>
   );
+}
+
+BodyComponent.defaultProps = {
+  initialCountry: 'Estonia',
 }
 
 export default BodyComponent;

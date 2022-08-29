@@ -7,7 +7,7 @@ import CovidTodayComponent from './CovidTodayComponent';
 function RouteComponent(props) {
   return (
     <Routes>
-      <Route path="/" element={<CovidTodayComponent {...props} />} />
+      <Route path="/" element={<CovidTodayComponent />} />
       <Route path="/reported-cases" element={<ReportedCasesComponent {...props} />} />
       <Route path="/reported-cases/:country" element={<ReportedCasesComponent {...props} />} />
       <Route path="/ranked-charts/:covidInfo/:count" element={<RankedChartsComponent {...props} />} />

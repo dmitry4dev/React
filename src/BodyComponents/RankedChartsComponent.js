@@ -1,9 +1,10 @@
-import React, { useRef, useState } from 'react';
+import { React, useRef, useState, useEffect } from 'react';
+import { BarChart } from 'reaviz';
 import { useParams } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { BarChart } from 'reaviz';
+import '../styles/RankedChart.scss';
 
 function RankedChartsComponent(props) {
 
@@ -11,13 +12,15 @@ function RankedChartsComponent(props) {
   const [chartData, setChartData] = useState(null);
   const {covidInfo, count} = useParams();
 
-  const initialData = Object.values(props.covidData).slice(0, count || 9).map(data => {
-
-    return {
-        key: data.location,
-        data: data.data.reverse()[0][covidInfo] || 0
-      }
-  });
+  useEffect(() => {
+    setChartData(
+      Object.values(props.covidData).slice(0, count || props.initialCountryCount).map(data => {
+        return {
+            key: data.location,
+            data: data.data.reverse()[0][covidInfo] || 0
+          }
+      }));
+  }, [props.covidData, count, covidInfo, props.initialCountryCount]);
 
   function handleOnInput() {
     const [totalNumberOfDeaths, totalNumberOfCases, countriesCount] = formRadio.current;
@@ -48,33 +51,39 @@ function RankedChartsComponent(props) {
 
   return(
     <>
-      <Row className="pt-5 pb-3">
-        <Col sm={4} className="mr-2">
-          <Form ref={formRadio} onInput={handleOnInput}>
+      <Row>
+        <Col md={4}>
+          <Form className="ranked-chart-form" ref={formRadio} onInput={handleOnInput}>
             <Form.Check
-              className="mb-1"
+              className="radio-btn-ranked"
               type={'radio'}
               label={`Total number of deaths`}
               name='group1'
               defaultChecked={covidInfo === 'total_deaths'}
             />
             <Form.Check
-              className="mb-3"
+              className="radio-btn-ranked"
               type={'radio'}
               label={`Total number of cases`}
               name='group1'
               defaultChecked={covidInfo === 'total_cases'}
             />
-            <label className="mb-1">Select countries count</label>
-            {countryListCount.length ? <Form.Select defaultValue={count}>{countryListCount}</Form.Select> : ''}
+            <div className="ranked-chart-select-wrapper">
+              <label className="form-label">Select countries count</label>
+              {countryListCount.length ? <Form.Select className="ranked-chart-select" defaultValue={count}>{countryListCount}</Form.Select> : ''}
+            </div>
           </Form>
         </Col>
-        <Col sm={8}>
-        {(chartData || initialData) ? <BarChart height={300} data={chartData || initialData} /> : ''}
+        <Col md={8}>
+          {chartData ? <BarChart className="bar-chart" data={chartData} /> : ''}
         </Col>
       </Row>
     </>
   );
+}
+
+RankedChartsComponent.defaultProps = {
+  initialCountryCount: 9,
 }
 
 export default RankedChartsComponent;
