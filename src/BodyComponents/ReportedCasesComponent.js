@@ -14,6 +14,7 @@ function ReportedCasesComponent(props) {
   const formRadio = useRef(null);
   const [chartData, setChartData] = useState(null);
   const [countryId, setcountryId] = useState(null);
+// useParams это хук, который содержит в себе параметры с URL
   const params = useParams();
   const dispatch = useDispatch();
   const id = countryId || params.country || props.initialCountryId;

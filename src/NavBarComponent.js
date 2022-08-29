@@ -10,13 +10,23 @@ import { setTheme } from './ReduxState';
 
 function NavBarComponent(props) {
 
+// Хук useSelector помогает нам следить за redux state и возвращает нам переменную,
+// которую мы объявили изначально в redux-toolkit initialState
+
   const countryId = useSelector(state => state.countryId);
   const checkedRadio = useSelector(state => state.checkedRadio);
   const theme = useSelector(state => state.theme);
+
+// dispatch это функция отправки действия. В неё всегда нужно заворачивать нашу функцию action
+// чтобы устанавливать значения нашим initialStat'ам
   const dispatch = useDispatch();
 
   function handleClick() {
     if (theme === 'light') {
+// createAction создал функцию, которую мы передали в dispatch
+// dispatch отправил это всё в redux и запустил с новыми данными
+// которые передались в reducer через action.payload
+
       dispatch(setTheme('dark'));
       document.body.style.background = 'black';
     } else {
