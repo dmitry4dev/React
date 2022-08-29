@@ -25,6 +25,7 @@ function ReportedCasesComponent(props) {
           data: data.new_deaths || 0
         }
     }));
+    dispatch(setCheckedRadio('total_deaths'));
   }, [id, props.covidData]);
 
   function handleCountrySelect(countryKey) {
@@ -100,7 +101,7 @@ function ReportedCasesComponent(props) {
           </Form>
         </Col>
         <Col sm={8}>
-          {chartData ? (<AreaChart className="area-chart"  data={chartData} />) : ''}
+          {chartData ? (<AreaChart className="area-chart" height={300}  data={chartData} />) : ''}
         </Col>
       </Row>
     </>

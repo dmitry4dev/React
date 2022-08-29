@@ -14,11 +14,9 @@
   width: 75%;
 }
 
-.bar-chart {
-  height: 300px;
-}
+/* MEDIA QUERIES */
 
-@media(max-width: 768px) {
+@media(max-width: 767.5px) {
   .ranked-chart-form {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -55,6 +53,4 @@
   .ranked-chart-select-wrapper {
     justify-self: start;
   }
-
-
 }

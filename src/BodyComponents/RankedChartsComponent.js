@@ -57,15 +57,15 @@ function RankedChartsComponent(props) {
             <Form.Check
               className="radio-btn-ranked"
               type={'radio'}
-              label={`Total number of deaths`}
-              name='group1'
+              label={'Total number of deaths'}
+              name="group1"
               defaultChecked={covidInfo === 'total_deaths'}
             />
             <Form.Check
               className="radio-btn-ranked"
               type={'radio'}
-              label={`Total number of cases`}
-              name='group1'
+              label={'Total number of cases'}
+              name="group1"
               defaultChecked={covidInfo === 'total_cases'}
             />
             <div className="ranked-chart-select-wrapper">
@@ -75,7 +75,7 @@ function RankedChartsComponent(props) {
           </Form>
         </Col>
         <Col md={8}>
-          {chartData ? <BarChart className="bar-chart" data={chartData} /> : ''}
+          {chartData ? <BarChart className="bar-chart" height={300} data={chartData} /> : ''}
         </Col>
       </Row>
     </>

@@ -5,6 +5,13 @@ $successColor: #40b340;
 $dangerColor: #d10000;
 $textSize: 40px;
 
+@media(max-width: 576px) {
+
+  .caption__descr {
+    font-size: 36px;
+  }
+}
+
 .wrapper {
   width: $carouselWidth;
   height: $carouselHeight;
@@ -44,4 +51,19 @@ $textSize: 40px;
 
 .carousel-indicators {
   display: none;
-};
+}
+
+@media(max-width: 576px) {
+
+  $textSize: 36px;
+
+  .caption__descr {
+    font-size: $textSize;
+  }
+
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}

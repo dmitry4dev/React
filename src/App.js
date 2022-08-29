@@ -11,7 +11,7 @@ function App() {
 
   return (
     <Container className={theme}>
-      <NavbarComponent theme={theme} />
+      <NavbarComponent />
       <BodyComponent />
     </Container>
   );

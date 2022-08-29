@@ -12,10 +12,11 @@ function NavBarComponent(props) {
 
   const countryId = useSelector(state => state.countryId);
   const checkedRadio = useSelector(state => state.checkedRadio);
+  const theme = useSelector(state => state.theme);
   const dispatch = useDispatch();
 
   function handleClick() {
-    if (props.theme === 'light') {
+    if (theme === 'light') {
       dispatch(setTheme('dark'));
       document.body.style.background = 'black';
     } else {
@@ -33,26 +34,36 @@ function NavBarComponent(props) {
             width="50"
             height="50"
             className="navbar__logo"
-            alt="covid logo"
+            alt="World Data on Covid"
           />
           <span className="navbar__title">World Data on Covid</span>
         </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Link to={"reported-cases/" + countryId} className="nav-link">Reported Cases</Link>
-            <Link to={"ranked-charts/" + (checkedRadio === 'total_cases' ? 'total_cases' : 'total_deaths') + "/20"} className="nav-link">Ranked Charts</Link>
+            <Link
+              to={"reported-cases/" + countryId}
+              className="nav-link">Reported Cases
+            </Link>
+            <Link
+              to={"ranked-charts/" + (checkedRadio === 'total_cases' ? 'total_cases' : 'total_deaths') + "/" + props.initialCountriesCount}
+              className="nav-link">Ranked Charts
+            </Link>
           </Nav>
           <Form.Check
             type="switch"
             id="custom-switch"
-            label={props.theme === 'light' ? 'Dark mode' : 'Light mode'}
+            label={theme === 'light' ? 'Dark mode' : 'Light mode'}
             onClick={() => handleClick()}
           />
         </Navbar.Collapse>
       </Container>
     </Navbar>
   );
+}
+
+NavBarComponent.defaultProps = {
+  initialCountriesCount: 20,
 }
 
 export default NavBarComponent;
