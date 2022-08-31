@@ -26,7 +26,7 @@ function ReportedCasesComponent(props) {
         }
     }));
     dispatch(setCheckedRadio('total_deaths'));
-  }, [id, props.covidData]);
+  }, [id, props.covidData, dispatch]);
 
   function handleCountrySelect(countryKey) {
     setcountryId(countryKey);
@@ -75,33 +75,33 @@ function ReportedCasesComponent(props) {
             <Form.Check
               className="radio-btn"
               type={'radio'}
-              label={`Death count`}
-              name='group1'
+              label={'Death count'}
+              name="group1"
               defaultChecked={true}
             />
             <Form.Check
               className="radio-btn"
               type={'radio'}
-              label={`Confirmed cases`}
-              name='group1'
+              label={'Confirmed cases'}
+              name="group1"
             />
             <Form.Check
               className="radio-btn"
               type={'radio'}
-              label={`Daily new values`}
-              name='group2'
+              label={'Daily new values'}
+              name="group2"
               defaultChecked={true}
             />
             <Form.Check
               className="radio-btn"
               type={'radio'}
-              label={`Cumulative mode`}
-              name='group2'
+              label={'Cumulative mode'}
+              name="group2"
             />
           </Form>
         </Col>
         <Col sm={8}>
-          {chartData ? (<AreaChart className="area-chart" height={300}  data={chartData} />) : ''}
+          {chartData ? (<AreaChart height={300}  data={chartData} />) : ''}
         </Col>
       </Row>
     </>

@@ -75,7 +75,7 @@ function RankedChartsComponent(props) {
           </Form>
         </Col>
         <Col md={8}>
-          {chartData ? <BarChart className="bar-chart" height={300} data={chartData} /> : ''}
+          {chartData ? <BarChart height={300} data={chartData} /> : ''}
         </Col>
       </Row>
     </>

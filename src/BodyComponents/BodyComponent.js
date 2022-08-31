@@ -27,7 +27,7 @@ function BodyComponent(props) {
       }
       setCountryList(list);
     });
-  }, []);
+  }, [dispatch, props.initialCountry]);
 
   return(
     <Container>

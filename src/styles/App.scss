@@ -2,25 +2,32 @@
 
 $blackcolor: #000;
 $whitecolor: #fff;
+$chart-whitecolor: #dcdeea;
+$brdrcolor-black: rgba(0, 0, 0, 0.18);
+$brdr-bottom-color: rgba(51, 51, 51, 0.2);
+$toggler-color-black: rgba(0, 0, 0, 0.55);
+$input-group-txtcolor: #e9ecef;
+$carousel-arrow-color: #6c9dd4;
 
 
 /* DARK MODE - LIGHT MODE */
 
 .light {
   .navbar-brand,
-  .form-check-label,
   .nav-link,
+  .form-check-label,
   .caption__title,
-  .form-label {
+  .form-label,
+  .card-body {
     color: $blackcolor;
   }
 
   .navbar {
-    border: none;
+    border: 0.5px solid $brdrcolor-black;
   }
 
   .navbar-toggler {
-    border: 1 px solid rgba(0,0,0,0.55);
+    border: 1px solid $toggler-color-black;
   }
 
   .navbar-toggler-icon {
@@ -29,25 +36,36 @@ $whitecolor: #fff;
 
   .input-group-text {
     color: $blackcolor;
-    background-color: #e9ecef;
+    background-color: $input-group-txtcolor;
   }
 
   .carousel-control-prev-icon,
   .carousel-control-next-icon {
-    background-color: #6c9dd4;
+    background-color: $carousel-arrow-color;
+  }
+
+  /* MEDIA QUERIES */
+
+  @media(max-width: 991.5px) {
+
+    .nav-link {
+      border-bottom: 0.5px solid $brdr-bottom-color;
+    }
   }
 }
 
 .dark {
   .navbar-brand,
-  .form-check-label,
   .nav-link,
+  .form-check-label,
   .caption__title,
-  .form-label {
+  .form-label,
+  .card-body {
     color: $whitecolor;
   }
 
-  .navbar {
+  .navbar,
+  .card-body {
     background-color: $blackcolor;
     border: 1px solid $whitecolor;
     border-radius: 5px;
@@ -76,5 +94,24 @@ $whitecolor: #fff;
   .carousel-control-prev-icon,
   .carousel-control-next-icon {
     background-color: $blackcolor;
+  }
+
+  g {
+    path {
+      stroke: $chart-whitecolor;
+    }
+
+    rect {
+      fill: $chart-whitecolor;
+    }
+  }
+
+  /* MEDIA QUERIES */
+
+  @media(max-width: 991.5px) {
+
+    .nav-link {
+      border-bottom: 0.5px solid $whitecolor;
+    }
   }
 }

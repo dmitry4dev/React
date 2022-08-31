@@ -16,6 +16,12 @@ function CovidTodayComponent() {
     <Carousel className="wrapper">
       <Carousel.Item>
         <Carousel.Caption className="caption">
+          <h3 className="caption__title">Today Recovered</h3>
+          <p className="caption__descr caption__descr--success">{covidTodayData?.todayRecovered}</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+        <Carousel.Caption className="caption">
           <h3 className="caption__title">Today Deaths</h3>
           <p className="caption__descr caption__descr--danger">{covidTodayData?.todayDeaths}</p>
         </Carousel.Caption>
@@ -24,12 +30,6 @@ function CovidTodayComponent() {
         <Carousel.Caption className="caption">
           <h3 className="caption__title">Today Cases</h3>
           <p className="caption__descr">{covidTodayData?.todayCases}</p>
-        </Carousel.Caption>
-      </Carousel.Item>
-      <Carousel.Item>
-        <Carousel.Caption className="caption">
-          <h3 className="caption__title">Today Recovered</h3>
-          <p className="caption__descr caption__descr--success">{covidTodayData?.todayRecovered}</p>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>
