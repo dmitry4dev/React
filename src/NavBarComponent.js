@@ -10,6 +10,7 @@ import { setTheme } from './ReduxState';
 
 function NavBarComponent(props) {
 
+  const url = process.env.REACT_APP_HOME_URL;
   const countryId = useSelector(state => state.countryId);
   const checkedRadio = useSelector(state => state.checkedRadio);
   const theme = useSelector(state => state.theme);
@@ -28,7 +29,7 @@ function NavBarComponent(props) {
       <Container>
         <Link className="navbar-brand" to="/">
           <img
-            src="/covid-logo.svg"
+            src={`${url}/covid-logo.svg`}
             width="50"
             height="50"
             className="navbar__logo"
@@ -40,11 +41,11 @@ function NavBarComponent(props) {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Link
-              to={"reported-cases/" + countryId}
+              to={`${url}/reported-cases/` + countryId}
               className="nav-link">Reported Cases
             </Link>
             <Link
-              to={"ranked-charts/" + (checkedRadio === 'total_cases' ? 'total_cases' : 'total_deaths') + "/" + props.initialCountriesCount}
+              to={`${url}/ranked-charts/` + (checkedRadio === 'total_cases' ? 'total_cases' : 'total_deaths') + "/" + props.initialCountriesCount}
               className="nav-link">Ranked Charts
             </Link>
           </Nav>

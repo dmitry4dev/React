@@ -7,7 +7,6 @@ import './styles/Footer.scss';
 function FooterComponent() {
 
   const randomCountry = useSelector(state => state.randomCountry);
-  console.log(randomCountry)
 
   return(
     <Container>
