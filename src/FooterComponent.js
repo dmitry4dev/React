@@ -1,18 +1,13 @@
-import { React, useEffect, useState } from 'react';
+import { React } from 'react';
+import { useSelector } from 'react-redux';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
-import { readCovidData } from './dataService/fileService';
 import './styles/Footer.scss';
 
 function FooterComponent() {
-  const [randomCountry, setRandomCountry] = useState({});
 
-  useEffect(() => {
-    readCovidData().then((data) => {
-      const countryNumber = Math.round(Math.random() * (Object.values(data).length - 0) + 0);
-      setRandomCountry(Object.values(data)[countryNumber]);
-    });
-  }, []);
+  const randomCountry = useSelector(state => state.randomCountry);
+  console.log(randomCountry)
 
   return(
     <Container>

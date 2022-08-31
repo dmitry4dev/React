@@ -2,7 +2,7 @@ $bgcolor-grey: rgb(243, 243, 243);
 $brdrcolor-black: rgba(0, 0, 0, 0.18);
 
 .card {
-  margin: 80px 0 20px;
+  margin-top: 80px;
   border: 1px solid $brdrcolor-black;
 }
 
@@ -65,6 +65,6 @@ $brdrcolor-black: rgba(0, 0, 0, 0.18);
 @media(max-width: 492px) {
 
   .card {
-    margin: 60px 0 20px;
+    margin-top: 60px;
   }
 }

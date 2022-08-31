@@ -18,10 +18,8 @@ function NavBarComponent(props) {
   function handleClick() {
     if (theme === 'light') {
       dispatch(setTheme('dark'));
-      document.body.style.background = 'black';
     } else {
       dispatch(setTheme('light'));
-      document.body.style.background = 'white';
     }
   }
 

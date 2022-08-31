@@ -12,7 +12,13 @@ $carousel-arrow-color: #6c9dd4;
 
 /* DARK MODE - LIGHT MODE */
 
+.light, .dark {
+  height: 100%;
+}
+
 .light {
+  background-color: $whitecolor;
+
   .navbar-brand,
   .nav-link,
   .form-check-label,
@@ -55,6 +61,8 @@ $carousel-arrow-color: #6c9dd4;
 }
 
 .dark {
+  background-color: $blackcolor;
+
   .navbar-brand,
   .nav-link,
   .form-check-label,

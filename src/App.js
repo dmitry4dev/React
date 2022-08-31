@@ -11,11 +11,14 @@ function App() {
   const theme = useSelector(state => state.theme);
 
   return (
-    <Container className={theme}>
-      <NavbarComponent />
-      <BodyComponent />
-      <FooterComponent />
-    </Container>
+    <div className={theme}>
+      <Container>
+        <NavbarComponent />
+        <BodyComponent />
+        <FooterComponent />
+      </Container>
+    </div>
+
   );
 }
 

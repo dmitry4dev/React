@@ -23,14 +23,11 @@ function RankedChartsComponent(props) {
   }, [props.covidData, count, covidInfo, props.initialCountryCount]);
 
   function handleOnInput() {
-    const [totalNumberOfDeaths, totalNumberOfCases, countriesCount] = formRadio.current;
+    const [, totalNumberOfCases, countriesCount] = formRadio.current;
     const selectedCountriesCount = [...countriesCount].find(option => option.selected === true);
 
-    let objectData;
+    let objectData = 'total_deaths';
 
-    if (totalNumberOfDeaths.checked) {
-      objectData = 'total_deaths';
-    }
     if (totalNumberOfCases.checked) {
       objectData = 'total_cases';
     }

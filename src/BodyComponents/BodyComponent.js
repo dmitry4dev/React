@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from 'react';
 import Container from 'react-bootstrap/esm/Container';
 import { useDispatch } from 'react-redux';
-import { setCountryId } from '../ReduxState';
+import { setCountryId, setRandomCountry } from '../ReduxState';
 import { readCovidData } from '../dataService/fileService';
 import RouteComponent from './RouteComponent';
 
@@ -17,6 +17,9 @@ function BodyComponent(props) {
       setCovidData(data);
 
       const list = [];
+      const countryNumber = Math.round(Math.random() * (Object.values(data).length - 0) + 0);
+
+      dispatch(setRandomCountry(Object.values(data)[countryNumber]));
 
       for (const key in data) {
         list.push({key, name: data[key].location});
