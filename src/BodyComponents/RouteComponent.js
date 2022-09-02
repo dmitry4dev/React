@@ -6,12 +6,11 @@ import CovidTodayComponent from './CovidTodayComponent';
 
 function RouteComponent(props) {
 
-  const url = '/covid-s.p.a';
-  // const url = process.env.REACT_APP_HOME_URL;
+  const url = process.env.REACT_APP_HOME_URL;
 
   return (
     <Routes>
-      <Route path={`/`} element={<CovidTodayComponent />} />
+      <Route path={`${url}/`} element={<CovidTodayComponent />} />
       <Route path={`${url}/reported-cases`} element={<ReportedCasesComponent {...props} />} />
       <Route path={`${url}/reported-cases/:country`} element={<ReportedCasesComponent {...props} />} />
       <Route path={`${url}/ranked-charts/:covidInfo/:count`} element={<RankedChartsComponent {...props} />} />

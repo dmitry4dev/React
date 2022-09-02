@@ -10,8 +10,7 @@ import { setTheme } from './ReduxState';
 
 function NavBarComponent(props) {
 
-  // const url = process.env.REACT_APP_HOME_URL;
-  const url = '/covid-s.p.a'
+  const url = process.env.REACT_APP_HOME_URL;
   const countryId = useSelector(state => state.countryId);
   const checkedRadio = useSelector(state => state.checkedRadio);
   const theme = useSelector(state => state.theme);
@@ -28,7 +27,7 @@ function NavBarComponent(props) {
   return (
     <Navbar expand="lg">
       <Container>
-        <Link className="navbar-brand" to="/">
+        <Link className="navbar-brand" to={`${url}/`}>
           <img
             src={`${url}/covid-logo.svg`}
             width="50"
