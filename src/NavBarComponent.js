@@ -10,7 +10,8 @@ import { setTheme } from './ReduxState';
 
 function NavBarComponent(props) {
 
-  const url = process.env.REACT_APP_HOME_URL;
+  const env = process.env.NODE_ENV;
+  const url = process.env[`REACT_APP_HOME_URL_${env}`];
   const countryId = useSelector(state => state.countryId);
   const checkedRadio = useSelector(state => state.checkedRadio);
   const theme = useSelector(state => state.theme);
